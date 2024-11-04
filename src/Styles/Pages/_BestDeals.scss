@@ -1,0 +1,108 @@
+@use "../Variables/Variables" as *;
+.BestDeals {
+  padding: 30px 0;
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .cardd {
+    &:hover .card-img img {
+      transform: rotateY(180deg);
+    }
+  }
+  .card-img {
+    margin-bottom: 20px;
+    overflow: hidden;
+    height: 400px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      transition: 1s ease;
+      width: 200px;
+    }
+  }
+  .card-info {
+    float: left;
+    width: 75%;
+    h4 {
+      font-size: 18px;
+    }
+
+    button {
+      border: 1px solid black;
+      background-color: transparent;
+      color: black;
+      font-size: 14px;
+      padding: 8px 20px;
+      border-radius: 25px;
+      transition: 0.5s ease;
+      &:hover {
+        border: solid 1px $BackgroundColor;
+        background-color: $BackgroundColor;
+        color: white;
+      }
+    }
+  }
+}
+// Best Deals 2
+.BestDeals2 {
+  padding: 50px 0;
+  h2 {
+    margin-bottom: 35px;
+  }
+  .row {
+    justify-content: center;
+  }
+  .products .cards{
+    display: flex;
+   
+    flex-direction: row;
+    flex-wrap: wrap;
+    .cardd{
+      width: 33.3%;
+    }
+  }
+}
+.MuiButtonBase-root {
+  background-color: transparent !important;
+  margin-right: 15px !important;
+  border: 1px solid black !important;
+  border-radius: 30px !important;
+  width: auto !important;
+  height: 30px !important;
+  color: black !important;
+  font-size: 13px !important;
+  transition: 0.5s ease;
+  font-weight: 600 !important;
+  padding: 0px 20px !important;
+
+  &:hover {
+    background-color: $BackgroundColor !important;
+    color: #fff !important;
+  }
+  &:active {
+    background-color: $BackgroundColor !important;
+    color: #fff !important;
+    border: none !important;
+  }
+}
+.css-jpln7h-MuiTabs-scroller,
+.css-1ujnqem-MuiTabs-root {
+  overflow: visible !important;
+}
+.css-1aquho2-MuiTabs-indicator {
+  background-color: $BackgroundColor !important;
+  bottom: -6px !important;
+  height: 2px !important;
+}
+// Best Deals 2
+
+@media (max-width:600px){
+  .products .cards{
+    justify-content: center !important;
+    .cardd{
+      width: 100% !important;
+    }
+  }
+}

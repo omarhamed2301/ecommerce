@@ -1,0 +1,59 @@
+@use "../Variables/Variables" as *;
+.getDiscount{
+    padding: 40px 0;
+    h2{
+        font-size: 27px;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+    .discount-card{
+        background-color: rgb(255, 227, 232);
+        border-radius: 10px;
+        overflow: hidden;
+        &:hover img{
+            transform: scale(1.2);
+        }
+        .card-info{
+            padding: 20px;
+            h4{
+                font-size: 20px;
+                font-weight: 700;
+                margin-bottom: 10px;
+                color: rgba(0, 0, 0, 0.789);
+            }
+            h3{
+                position: relative;
+                font-size: 30px;
+                margin-bottom: 25px;
+                color: $BackgroundColor;
+                font-weight: bold;
+            }
+            span{
+                position: absolute;
+                bottom: -15px;
+                right: auto;
+                left: 0;
+                color: rgb(79, 79, 79);
+                font-size: 13px;
+                text-decoration: line-through;
+            }
+            p{
+                font-size: 16px;
+                color: rgba(0, 0, 0, 0.699);
+            }
+        }
+        .card-img{
+            overflow: hidden;
+        }
+        img{
+            width: 100%;
+            transition: 0.5s ease;
+        }
+    }
+}
+@media (max-width:600px){
+    .cashBack .discount{
+        width: auto !important;
+        right: unset !important;
+    }
+}
