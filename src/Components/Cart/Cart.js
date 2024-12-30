@@ -70,14 +70,14 @@ export default function Cart({ cartItems, setCartItems, onRemoveFromCart }) {
                 style={{ padding: "10px 0px 10px 10px", marginBottom: "10px" }}
               >
                 <div className="row align-items-center justify-content-between">
-                  <div className="col-lg-3" style={{ overflow: "hidden" }}>
+                  <div className="col-lg-3 cartImg" style={{ overflow: "hidden" }}>
                     <img
                       style={{ width: "100%" }}
                       src={item.image}
                       alt={item.title}
                     />
                   </div>
-                  <div className="col-lg-7" style={{ paddingTop: "10px" }}>
+                  <div className="col-lg-7 cartBody" style={{ paddingTop: "10px" }}>
                     <h5>{item.title}</h5>
 
                     <div className="row">
@@ -115,10 +115,11 @@ export default function Cart({ cartItems, setCartItems, onRemoveFromCart }) {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-2">
+                  <div className="col-lg-2 cartRemoveItem">
                     <button
                       className="removeCartItem"
                       onClick={() => onRemoveFromCart(item.id)}
+                      style={{ textAlign:'center' }}
                     >
                       X
                     </button>
