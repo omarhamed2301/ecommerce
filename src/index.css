@@ -171,7 +171,8 @@ body {
 .navbar .accountCart ul .closeBtn:hover {
   color: red;
 }
-.navbar .accountCart ul .removeCartItem {
+
+.removeCartItem {
   background-color: #003d29;
   color: #fff;
   width: 40px;
@@ -181,7 +182,7 @@ body {
   border-radius: 50px;
   transition: 0.5s all;
 }
-.navbar .accountCart ul .removeCartItem:hover {
+.removeCartItem:hover {
   background-color: brown;
 }
 
@@ -659,4 +660,25 @@ footer ul li:hover a {
     width: 98%;
     margin: auto !important;
   }
+}
+.checkout {
+  padding: 80px 0;
+}
+.checkout .priceInfo {
+  background-color: hsl(0, 0%, 91%);
+  padding: 20px 25px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.checkout .priceInfo h3 {
+  margin-bottom: 15px;
+}
+.checkout .priceInfo p {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.checkout .priceInfo p span {
+  font-weight: normal;
+  font-size: 16px;
 }/*# sourceMappingURL=index.css.map */

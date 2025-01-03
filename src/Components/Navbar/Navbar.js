@@ -3,6 +3,7 @@ import Logo from "../../Images/logo.svg";
 import User from "../../Images/user.png";
 import PopularCategories from "../PopularCategories/PopularCategories";
 import Cart from "../Cart/Cart";
+import { Link } from "react-router-dom";
 export default function Navbar({cartItems, onRemoveFromCart, setCartItems}) {
   return (
     <>
@@ -26,9 +27,9 @@ export default function Navbar({cartItems, onRemoveFromCart, setCartItems}) {
       <nav className="navbar navbar-expand-lg">
         <div className="topBar-container">
           <div className="row">
-            <a className="navbar-brand col-lg-2 col-sm-6" href="#">
+            <Link className="navbar-brand col-lg-2 col-sm-6" to="/">
               <img src={Logo} alt="Logo" />
-            </a>
+            </Link>
             <button
               className="navbar-toggler col-sm-5"
               type="button"

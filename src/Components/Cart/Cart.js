@@ -1,26 +1,23 @@
-
-
 import React, { useState } from "react";
 import Cartt from "../../Images/cart.png";
+import { Link } from "react-router-dom";
 
 export default function Cart({ cartItems, setCartItems, onRemoveFromCart }) {
   const [showCart, setShowCart] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
-  // Function to handle increasing the quantity of a specific item
+
   const handleIncrease = (itemId) => {
     const updatedCart = cartItems.map((item) => {
       if (item.id === itemId) {
-        // Ensure that item.quantity exists; if not, initialize it to 1
         return { ...item, quantity: (item.quantity || 1) + 1 };
       }
       return item;
     });
-    // Update the cart with the new quantity
     setCartItems(updatedCart);
   };
 
-  // Function to handle decreasing the quantity of a specific item
   const handleDecrease = (itemId) => {
     const updatedCart = cartItems.map((item) => {
       if (item.id === itemId && (item.quantity || 1) > 1) {
@@ -28,7 +25,6 @@ export default function Cart({ cartItems, setCartItems, onRemoveFromCart }) {
       }
       return item;
     });
-    // Update the cart with the new quantity
     setCartItems(updatedCart);
   };
 
@@ -38,7 +34,6 @@ export default function Cart({ cartItems, setCartItems, onRemoveFromCart }) {
       setShowCart(false);
       setIsClosing(false);
     }, 1000);
-    
   };
 
   return (
@@ -47,7 +42,7 @@ export default function Cart({ cartItems, setCartItems, onRemoveFromCart }) {
         <img src={Cartt} alt="User" /> Cart
         <span>{cartItems.length > 0 ? cartItems.length : "0"}</span>
       </button>
-      {(showCart) && (
+      {showCart && (
         <ul
           className={`animate__animated ${
             isClosing ? "animate__backOutRight" : "animate__backInRight"
@@ -63,70 +58,98 @@ export default function Cart({ cartItems, setCartItems, onRemoveFromCart }) {
             Cart
           </p>
           {cartItems.length > 0 ? (
-            cartItems.map((item) => (
-              <li
-                key={item.id}
-                className="cartCard"
-                style={{ padding: "10px 0px 10px 10px", marginBottom: "10px" }}
-              >
-                <div className="row align-items-center justify-content-between">
-                  <div className="col-lg-3 cartImg" style={{ overflow: "hidden" }}>
-                    <img
-                      style={{ width: "100%" }}
-                      src={item.image}
-                      alt={item.title}
-                    />
-                  </div>
-                  <div className="col-lg-7 cartBody" style={{ paddingTop: "10px" }}>
-                    <h5>{item.title}</h5>
+            <>
+              {cartItems
+                .slice(0, showMore ? cartItems.length : 3)
+                .map((item) => (
+                  <li
+                    key={item.id}
+                    className="cartCard"
+                    style={{
+                      padding: "10px 0px 10px 10px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <div className="row align-items-center justify-content-between">
+                      <div
+                        className="col-lg-3 cartImg"
+                        style={{ overflow: "hidden" }}
+                      >
+                        <img
+                          style={{ width: "100%" }}
+                          src={item.image}
+                          alt={item.title}
+                        />
+                      </div>
+                      <div
+                        className="col-lg-7 cartBody"
+                        style={{ paddingTop: "10px" }}
+                      >
+                        <h5>{item.title}</h5>
 
-                    <div className="row">
-                      {/* Display price based on quantity */}
-                      <p className="col-lg-5">
-                        ${item.price * (item.quantity || 1)}
-                      </p>
-                      <div className="p-0 m-0 col-lg-7">
+                        <div className="row">
+                          <p className="col-lg-5">
+                            ${item.price * (item.quantity || 1)}
+                          </p>
+                          <div className="p-0 m-0 col-lg-7">
+                            <button
+                              onClick={() => handleIncrease(item.id)}
+                              style={{
+                                padding: "0px 7px",
+                                backgroundColor: "#003d29",
+                                color: "white",
+                                borderRadius: "7px",
+                              }}
+                            >
+                              +
+                            </button>
+
+                            <span style={{ margin: "0px 10px" }}>
+                              {item.quantity || 1}
+                            </span>
+                            <button
+                              onClick={() => handleDecrease(item.id)}
+                              style={{
+                                padding: "0px 7px",
+                                backgroundColor: "#003d29",
+                                color: "white",
+                                borderRadius: "7px",
+                              }}
+                            >
+                              -
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-lg-2 cartRemoveItem">
                         <button
-                          onClick={() => handleIncrease(item.id)}
-                          style={{
-                            padding: "0px 7px",
-                            backgroundColor: "#003d29",
-                            color: "white",
-                            borderRadius: "7px",
-                          }}
+                          className="removeCartItem"
+                          onClick={() => onRemoveFromCart(item.id)}
+                          style={{ textAlign: "center" }}
                         >
-                          +
-                        </button>
-                        {/* Ensure the displayed quantity defaults to 1 if undefined */}
-                        <span style={{ margin: "0px 10px" }}>
-                          {item.quantity || 1}
-                        </span>
-                        <button
-                          onClick={() => handleDecrease(item.id)}
-                          style={{
-                            padding: "0px 7px",
-                            backgroundColor: "#003d29",
-                            color: "white",
-                            borderRadius: "7px",
-                          }}
-                        >
-                          -
+                          X
                         </button>
                       </div>
                     </div>
-                  </div>
-                  <div className="col-lg-2 cartRemoveItem">
-                    <button
-                      className="removeCartItem"
-                      onClick={() => onRemoveFromCart(item.id)}
-                      style={{ textAlign:'center' }}
-                    >
-                      X
-                    </button>
-                  </div>
+                  </li>
+                ))}
+
+              {cartItems.length > 3 && (
+                <div className="mt-2">
+                  <button
+                    onClick={() => setShowMore(!showMore)}
+                    style={{
+                      padding: "8px 20px",
+                      color: "#686868",
+                      border: "none",
+                      fontSize:'16px'
+                    }}
+                  >
+                    {showMore ? "Show less" : "Show more..."}
+                  </button>
                 </div>
-              </li>
-            ))
+              )}
+            </>
           ) : (
             <p className="text-center" style={{ marginTop: "50px" }}>
               Your cart is empty
@@ -134,9 +157,9 @@ export default function Cart({ cartItems, setCartItems, onRemoveFromCart }) {
           )}
 
           {cartItems.length > 0 && (
-            <div className="checkout text-center mt-5">
-              <button
-                href="#"
+            <div className="checkoutBtn text-center mt-3">
+              <Link
+                to="/checkout"
                 style={{
                   padding: "8px 20px",
                   backgroundColor: "#003d29",
@@ -145,7 +168,7 @@ export default function Cart({ cartItems, setCartItems, onRemoveFromCart }) {
                 }}
               >
                 Checkout
-              </button>
+              </Link>
             </div>
           )}
         </ul>
